@@ -1,0 +1,12 @@
+certifi==2017.7.27.1
+chardet==3.0.4
+Django==1.11.4
+django-node==4.0.0
+django-rest-framework==0.1.0
+django-webpack-loader==0.5.0
+djangorestframework==3.6.4
+idna==2.6
+optional-django==0.1.0
+pytz==2017.2
+requests==2.18.4
+urllib3==1.22
