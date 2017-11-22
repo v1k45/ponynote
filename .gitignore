@@ -110,6 +110,8 @@ node_modules/
 
 # do not include webpack stats
 webpack-stats.dev.json
+webpack-stats.prod.json
 
 # build files
 build/
+bundles/
