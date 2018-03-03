@@ -7,6 +7,10 @@ import {notes} from "../actions";
 
 class PonyNote extends Component {
 
+    componentDidMount() {
+        this.props.fetchNotes();
+    }
+
     state = {
         text: "",
         updateNoteId: null,
@@ -24,11 +28,10 @@ class PonyNote extends Component {
     submitNote = (e) => {
         e.preventDefault();
         if (this.state.updateNoteId === null) {
-            this.props.addNote(this.state.text);
+            this.props.addNote(this.state.text).then(this.resetForm)
         } else {
-            this.props.updateNote(this.state.updateNoteId, this.state.text);
+            this.props.updateNote(this.state.updateNoteId, this.state.text).then(this.resetForm);
         }
-        this.resetForm();
     }
 
     render() {
@@ -52,7 +55,7 @@ class PonyNote extends Component {
                 <table>
                     <tbody>
                         {this.props.notes.map((note, id) => (
-                            <tr key={`note_${id}`}>
+                            <tr key={`note_${note.id}`}>
                                 <td>{note.text}</td>
                                 <td><button onClick={() => this.selectForEdit(id)}>edit</button></td>
                                 <td><button onClick={() => this.props.deleteNote(id)}>delete</button></td>
@@ -74,11 +77,14 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
+        fetchNotes: () => {
+            dispatch(notes.fetchNotes());
+        },
         addNote: (text) => {
-            dispatch(notes.addNote(text));
+            return dispatch(notes.addNote(text));
         },
         updateNote: (id, text) => {
-            dispatch(notes.updateNote(id, text));
+            return dispatch(notes.updateNote(id, text));
         },
         deleteNote: (id) => {
             dispatch(notes.deleteNote(id));

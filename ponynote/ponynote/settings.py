@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'webpack_loader',
+
+    'notes.apps.NotesConfig',
 ]
 
 MIDDLEWARE = [
