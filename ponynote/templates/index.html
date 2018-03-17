@@ -1,9 +1,11 @@
 {% load render_bundle from webpack_loader %}
+{% load static %}
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
+	<link rel="shortcut icon" href="{% static 'images/favicon.ico' %}">
     <title>Ponynote</title>
   </head>
   <body>
