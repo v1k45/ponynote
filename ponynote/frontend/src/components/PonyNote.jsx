@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 
-import {notes} from "../actions";
+import {notes, auth} from "../actions";
 
 
 
@@ -39,6 +39,9 @@ class PonyNote extends Component {
             <div>
                 <h2>Welcome to PonyNote!</h2>
                 <hr />
+                <div style={{textAlign: "right"}}>
+                    {this.props.user.username} (<a onClick={this.props.logout}>logout</a>)
+                </div>
 
                 <h3>Add new note</h3>
                 <form onSubmit={this.submitNote}>
@@ -72,6 +75,7 @@ class PonyNote extends Component {
 const mapStateToProps = state => {
     return {
         notes: state.notes,
+        user: state.auth.user,
     }
 }
 
@@ -89,6 +93,7 @@ const mapDispatchToProps = dispatch => {
         deleteNote: (id) => {
             dispatch(notes.deleteNote(id));
         },
+        logout: () => dispatch(auth.logout()),
     }
 }
 
